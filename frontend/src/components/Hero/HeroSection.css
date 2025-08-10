@@ -1,0 +1,164 @@
+.hero-section {
+  background-color: var(--primary-teal);
+  background-image: url('../../assets/blank.png');
+  background-size: auto;
+  padding: 4rem 0;
+  min-height: 100vh;
+  display: flex;
+  width:  100vw;
+
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+
+}
+.hero-container {
+  max-width:  100vw;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow: visible;
+
+}
+
+.hero-container {
+  overflow: visible;
+
+}
+
+.hero-text {
+  width: 100%;
+  height: auto;
+  position: relative;
+  justify-self: start;
+  overflow: visible;
+  min-width: 0;
+}
+
+.hero-text svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-width: 700px;
+}
+
+.hero-text-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cta-button {
+  background-color: var(--primary-red);
+  font-family: "Josefin Sans", sans-serif;
+  color: white;
+  border: none;
+  padding: 1.75rem 2.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.cta-button:hover {
+  background-color: var(--secondary-red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  justify-self: end;
+}
+
+.tv-container {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+.tv-container svg {
+  width: 100%;
+  height: auto;
+  display: block;      
+}
+
+/* .hero-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+} */
+
+.hero-decorations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.starburst-container {
+  position: fixed;
+}
+
+.starburst{
+  position: fixed;
+  width: 50px;
+}
+
+@media (max-width: 1460px){
+    .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .hero-text,
+  .hero-visual {
+    justify-self: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+    padding: 3rem;
+  }
+  #heroText {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+
+  
+  .hero-text,
+  .hero-visual {
+    justify-self: center;
+  }
+}
