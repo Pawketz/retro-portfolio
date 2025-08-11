@@ -6,7 +6,13 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: 'Kiosk Script';
+  src: url('./assets/fonts/kiosk-script.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   /* Color Palette */
   --primary-teal: #89b8a4;

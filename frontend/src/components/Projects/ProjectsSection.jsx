@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Arrow from '../../assets/arrow.svg';
 import './ProjectsSection.css';
 
 function ProjectsSection() {
