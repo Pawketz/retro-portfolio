@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
     "start": "node backend/index.js",
-    "build": "npm install --prefix backend && npm run build --prefix frontend && rm -rf backend/public && cp -r frontend/dist backend/public",
+    "build": "cd frontend && npm run build && cd .. && xcopy frontend\\build backend\\public /E /I /Y",
     "postinstall": "npm install --prefix backend"
   },
   "repository": {
