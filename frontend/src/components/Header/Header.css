@@ -1,7 +1,7 @@
 
 .header {
   background-color: var(--primary-cream);
-  width: 100vw;;
+  width: 100vw;
   padding: 1rem 0;
   position: fixed;
   top: 0;
@@ -16,7 +16,6 @@
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 1400px; /* or remove for full width */
   margin: 0 auto;
   padding: 1rem 2rem; /* reduce vertical padding so bar stays slim */
   box-sizing: border-box;
@@ -30,7 +29,8 @@
 .logo {
   position: absolute; /* remove from flex flow so height not dictated by 350px image */
   left: -8rem;
-  padding-left: 8rem;
+    padding-left: 10rem;
+
   top: 70%;
   transform: translateY(-30%); /* vertically center within header */
   display: flex;
@@ -93,7 +93,6 @@
 @media (max-width: 1450px) {
 .logo {
 
-  padding-left: 10rem;
 
 }
 }
