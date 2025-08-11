@@ -102,14 +102,6 @@ function HeroSection() {
             </div>
           </div>
         </div>
-        
-        <div className="hero-decorations">
-
-
-          <Starburst fill="var(--primary-yellow)" left="74%" top="31%" transformScale={1} />
-
-
-        </div>
       </div>
     </section>
   );
