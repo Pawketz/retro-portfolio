@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import './ContactSection.css';
 
 function ContactSection() {
@@ -7,20 +7,80 @@ function ContactSection() {
     email: '',
     message: ''
   });
+  
+  const [submitStatus, setSubmitStatus] = useState({
+    isSubmitting: false,
+    message: '',
+    type: '' // 'success' or 'error'
+  });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-  };
+    
+    // Clear status message when user starts typing
+    if (submitStatus.message) {
+      setSubmitStatus(prev => ({ ...prev, message: '', type: '' }));
+    }
+  }, [submitStatus.message]);
 
-  const handleSubmit = (e) => {
+  const resetForm = useCallback(() => {
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
+  }, []);
+
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-  };
+    
+    // Prevent multiple submissions
+    if (submitStatus.isSubmitting) return;
+    
+    setSubmitStatus({
+      isSubmitting: true,
+      message: 'Sending message...',
+      type: 'info'
+    });
+
+    try {
+      const response = await fetch('/api/contact/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          returnEmail: formData.email,
+          subject: `Message from ${formData.name}`,
+          messageBody: formData.message
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({
+          isSubmitting: false,
+          message: 'Message sent successfully! I\'ll get back to you soon.',
+          type: 'success'
+        });
+        resetForm();
+      } else {
+        throw new Error(data.message || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setSubmitStatus({
+        isSubmitting: false,
+        message: error.message || 'Failed to send message. Please try again.',
+        type: 'error'
+      });
+    }
+  }, [formData, submitStatus.isSubmitting, resetForm]);
 
   return (
     <section id="contact" className="contact-section">
@@ -39,6 +99,9 @@ function ContactSection() {
                 onChange={handleInputChange}
                 className="form-input"
                 required
+                disabled={submitStatus.isSubmitting}
+                minLength="2"
+                maxLength="100"
               />
             </div>
             
@@ -52,6 +115,8 @@ function ContactSection() {
                 onChange={handleInputChange}
                 className="form-input"
                 required
+                disabled={submitStatus.isSubmitting}
+                maxLength="255"
               />
             </div>
             
@@ -65,11 +130,25 @@ function ContactSection() {
                 className="form-textarea"
                 rows="5"
                 required
+                disabled={submitStatus.isSubmitting}
+                minLength="10"
+                maxLength="1000"
+                placeholder="Tell me about your project or just say hi!"
               ></textarea>
             </div>
             
-            <button type="submit" className="submit-btn">
-              SEND IT!
+            {submitStatus.message && (
+              <div className={`form-status ${submitStatus.type}`}>
+                {submitStatus.message}
+              </div>
+            )}
+            
+            <button 
+              type="submit" 
+              className={`submit-btn ${submitStatus.isSubmitting ? 'submitting' : ''}`}
+              disabled={submitStatus.isSubmitting}
+            >
+              {submitStatus.isSubmitting ? 'SENDING...' : 'SEND IT!'}
             </button>
           </form>
           

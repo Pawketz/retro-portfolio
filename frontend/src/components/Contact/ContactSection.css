@@ -84,10 +84,44 @@
   box-shadow: 0 0 0 3px rgba(125, 181, 166, 0.1);
 }
 
+.form-input:disabled,
+.form-textarea:disabled {
+  background-color: #f0f0f0;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .form-textarea {
   resize: vertical;
   min-height: 120px;
   font-family: inherit;
+}
+
+.form-status {
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0.5rem 0;
+}
+
+.form-status.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.form-status.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
 }
 
 .submit-btn {
@@ -106,10 +140,42 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.submit-btn:hover {
+.submit-btn:hover:not(:disabled) {
   background-color: var(--secondary-red);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.submit-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn.submitting {
+  position: relative;
+  color: transparent;
+}
+
+.submit-btn.submitting::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .contact-decorations {
