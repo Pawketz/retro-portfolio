@@ -72,6 +72,13 @@ h2,footer{
   font-family: "Intervogue Soft Alt", sans-serif;
 }
 
+#about,
+#projects,
+#contact,
+#skills {
+  scroll-margin-top: 150px; /* Adjust this value based on your header height */
+}
+
 #root {
   width: 100%;
   margin: 0;

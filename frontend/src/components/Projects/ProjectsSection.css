@@ -55,6 +55,7 @@
 
 .project-card {
   position: relative;
+  font-family: 'josefin sans', sans-serif;
   background-color: var(--primary-cream);
   border-radius: 20px;
   margin-top: 12.5%;
@@ -108,19 +109,20 @@
 }
 
 .project-tech {
-  font-weight: 800;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+
+  font-weight: 900;
+  font-size: 2rem;
   color: var(--primary-dark)
 }
 
+
 .tech-highlight {
   font-weight: bold;
-  font-size: 1.75rem;
+  font-size: 3rem;
 }
-
 .project-description {
   font-size: 1.5rem;
+  font-weight: 400;
   line-height: 1.5;
   margin-bottom: 1.5rem;
 }
@@ -207,6 +209,15 @@
 }
 
 @media (max-width: 768px) {
+
+  .project-title {
+    top: -15%; /* adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-size: 3rem;
+
+  }
   .project-showcase {
     flex-direction: column;
     gap: 1rem;

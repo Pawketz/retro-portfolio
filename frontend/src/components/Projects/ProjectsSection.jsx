@@ -8,29 +8,43 @@ function ProjectsSection() {
   const projects = [
     {
       id: 1,
-      title: "Try My Latest!",
+      title: "Pawketz Packs",
       tech: "REACT!",
-      description: "Sleek, Responsive, and Delightfully Fast!",
-      demoLink: "#",
+      description: "a full-stack web application for collecting and battling digital cards with real-time multiplayer gameplay.",
+      demoLink: "https://www.pawketz.com",
       codeLink: "#"
     },
     {
       id: 2,
-      title: "E-Commerce Site",
-      tech: "MERN",
-      description: "Full-stack shopping experience with user authentication!",
+      title: "Stream Thing",
+      tech: "TYPESCRIPT & WEBSOCKET!",
+      description: "OBS Studio Hardware Controller for DeskThing",
       demoLink: "#",
-      codeLink: "#"
+      codeLink: "https://github.com/Pawketz/Stream-Thing"
     },
     {
       id: 3,
-      title: "Weather App",
-      tech: "VANILLA JS",
-      description: "Clean weather forecasting with real-time data!",
-      demoLink: "#",
-      codeLink: "#"
+      title: "Live Cap",
+      tech: "WEB SPEECH API!",
+      description: "A real-time speech-to-text captioning application for streaming with OBS Studio.",
+      demoLink: "https://livecap.onrender.com/",
+      codeLink: "https://github.com/Pawketz/liveCap"
     }
   ];
+
+  const handleDemoClick = () => {
+    const demoLink = projects[currentProject].demoLink;
+    if (demoLink && demoLink !== "#") {
+      window.open(demoLink, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleCodeClick = () => {
+    const codeLink = projects[currentProject].codeLink;
+    if (codeLink && codeLink !== "#") {
+      window.open(codeLink, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length);
@@ -112,7 +126,7 @@ function ProjectsSection() {
               <div className="project-info">
                 <div className="project-title">{projects[currentProject].title}</div>
                 <div className="project-tech">
-                  BUILT WITH <span className="tech-highlight">{projects[currentProject].tech}</span>
+                  <span className="highlightIntro" >BUILT WITH</span> <br/><span className="tech-highlight">{projects[currentProject].tech}</span>
                 </div>
                 <div className="project-description">
                   {projects[currentProject].description}
@@ -122,8 +136,20 @@ function ProjectsSection() {
               </div>
             </div>
             <div className="project-buttons">
-              <button className="project-btn demo-btn">SEE DEMO</button>
-              <button className="project-btn code-btn">VIEW CODE</button>
+              <button 
+                className={`project-btn demo-btn ${projects[currentProject].demoLink === "#" ? 'disabled' : ''}`}
+                onClick={handleDemoClick}
+                disabled={projects[currentProject].demoLink === "#"}
+              >
+                SEE DEMO
+              </button>
+              <button 
+                className={`project-btn code-btn ${projects[currentProject].codeLink === "#" ? 'disabled' : ''}`}
+                onClick={handleCodeClick}
+                disabled={projects[currentProject].codeLink === "#"}
+              >
+                GITHUB
+              </button>
             </div>
           </div>
 
